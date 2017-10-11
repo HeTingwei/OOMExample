@@ -47,17 +47,26 @@ public class MainActivity extends AppCompatActivity {
 //                if (firstNew - firstOld == 1 || firstNew - firstOld == -1) {
 //                    itemAdapter.resetItem(firstOld);
 //                }
-                for(int j=0;j<itemAdapter.bmList.size();j++) {
-                    if(itemAdapter.bmList.get(j).isRecycled()){
-                        Log.d(TAG, "onScrollChange: "+j+" 释放");
-                    }else{
-                        Log.d(TAG, "onScrollChange: "+j+" 未释放");
-                    }
+//                for(int j=0;j<itemAdapter.bmList.size();j++) {
+//                    if(itemAdapter.bmList.get(j).isRecycled()){
+//                        Log.d(TAG, "onScrollChange: "+j+" 释放");
+//                    }else{
+//                        Log.d(TAG, "onScrollChange: "+j+" 未释放");
+//                    }
+//                }
+                //上拉
+                if (firstOld < firstNew) {
+                    firstOld++;
+                    itemAdapter.release(firstNew - 2);
+                    itemAdapter.resetItem(firstNew + visibleCount);
                 }
-                itemAdapter.resetItem(firstNew-1);
-                itemAdapter.resetItem(firstNew+visibleCount);
-                itemAdapter.release(firstNew-2);
-                itemAdapter.release(firstNew+visibleCount+1);
+                //下拉
+                if (firstOld > firstNew) {
+                    firstOld--;
+                    itemAdapter.resetItem(firstNew - 1);
+                    itemAdapter.release(firstNew + visibleCount + 1);
+                }
+
 
             }
         });
