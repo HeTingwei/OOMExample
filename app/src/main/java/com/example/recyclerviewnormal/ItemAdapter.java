@@ -19,7 +19,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
     Context context;
     List<Bitmap> bmList;
     List<ImageView> imgvList;
-    int i = 0;
 
     public ItemAdapter(List<String> list, Context context) {
         this.list = list;
@@ -60,7 +59,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         //设置textView显示内容为list里的对应项
-
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.avatar);
         if (position >= bmList.size()) {
             bmList.add(bm);
@@ -73,15 +71,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         holder.tv.setText(position + "");
     }
 
-    //要显示的子项数量
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    //这里定义的是子项的类，不要在这里直接对获取对象进行操作
     public class MyViewHolder extends RecyclerView.ViewHolder {
-
         ImageView img;
         TextView tv;
 
